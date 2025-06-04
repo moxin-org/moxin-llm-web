@@ -11,6 +11,9 @@ import icon from 'astro-icon';
 import compress from 'astro-compress';
 import type { AstroIntegration } from 'astro';
 
+// Assuming 'astrowind' is correctly imported. If it's a local file, ensure the path is correct.
+// If it's from 'node_modules', it should be `import astrowind from 'some-package-name';`
+// For now, I'll assume your local path `./vendor/integration` is correct.
 import astrowind from './vendor/integration';
 
 import { readingTimeRemarkPlugin, responsiveTablesRehypePlugin, lazyImagesRehypePlugin } from './src/utils/frontmatter';
@@ -22,7 +25,11 @@ const whenExternalScripts = (items: (() => AstroIntegration) | (() => AstroInteg
   hasExternalScripts ? (Array.isArray(items) ? items.map((item) => item()) : [items()]) : [];
 
 export default defineConfig({
-  output: 'static',
+  // GitHub Pages settings
+  site: 'https://moxin-org.github.io', // Your GitHub Pages domain
+  base: '/moxin-llm-web/',             // Your repository name, with leading/trailing slashes
+
+  output: 'static', // This was already correctly set
 
   integrations: [
     tailwind({

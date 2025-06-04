@@ -1,9 +1,23 @@
 ---
 import { SITE } from 'astrowind:config';
+import siteLogoImage from '~/assets/favicons/moxin-logo.png'; // Import your logo
+
+// Construct alt text: use from config if available, otherwise generate from site name
+const logoAltText = SITE?.logoAlt || (SITE?.name ? `${SITE.name} Logo` : 'Site Logo');
 ---
 
-<span
-  class="self-center ml-2 rtl:ml-0 rtl:mr-2 text-2xl md:text-xl font-bold text-gray-900 whitespace-nowrap dark:text-white"
->
-   {SITE?.name}
-</span>
+<div class="flex items-center">
+  {siteLogoImage && (
+    <img
+      src={siteLogoImage.src}
+      alt={logoAltText}
+      width={siteLogoImage.width}   height={siteLogoImage.height}
+      class="h-8 w-auto mr-2 rtl:mr-0 rtl:ml-2" loading="lazy"
+    />
+  )}
+  <span
+    class="self-center text-2xl md:text-xl font-bold text-gray-900 whitespace-nowrap dark:text-white"
+    >
+     {SITE?.name}
+  </span>
+</div>

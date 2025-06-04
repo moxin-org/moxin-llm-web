@@ -189,9 +189,12 @@ export const footerData = {
   ],
 
   socialLinks: [
-    { ariaLabel: 'X', icon: 'tabler:brand-x', href: 'https://x.com/moxin_org' }, // Assuming this is the correct X handle
+    { ariaLabel: 'X', icon: 'tabler:brand-x', href: 'https://x.com/moxin_org' }, 
+    { ariaLabel: 'Bluesky', icon: 'tabler:brand-bluesky', href: 'https://bsky.app/profile/moxin-org.bsky.social' }, 
+    { ariaLabel: 'Mastodon', icon: 'tabler:brand-mastodon', href: 'https://mastodon.social/@moxin' }, 
     { ariaLabel: 'RSS', icon: 'tabler:rss', href: getAsset('/rss.xml') },
-    { ariaLabel: 'Github', icon: 'tabler:brand-github', href: 'https://github.com/moxin-org/Moxin-LLM' }, // Changed to Moxin-LLM GitHub
+    { ariaLabel: 'Github', icon: 'tabler:brand-github', href: 'https://github.com/moxin-org/Moxin-LLM' },
+    { ariaLabel: 'Discord', icon: 'tabler:brand-discord', href: 'https://discord.gg/dawBjMrsSD' },
   ],
   // footNote: `
   //   <span class="w-5 h-5 md:w-6 md:h-6 md:-mt-0.5 bg-cover mr-1.5 rtl:mr-0 rtl:ml-1.5 float-left rtl:float-right rounded-sm bg-[url(https://onwidget.com/favicon/favicon-32x32.png)]"></span>
