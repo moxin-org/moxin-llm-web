@@ -27,8 +27,7 @@ const whenExternalScripts = (items: (() => AstroIntegration) | (() => AstroInteg
 export default defineConfig({
   // GitHub Pages settings
   site: 'https://moxin-org.github.io', // Your GitHub Pages domain
-  base: '/moxin-llm/',             // Your repository name, with leading/trailing slashes
-
+  base: '/moxin-llm-web/',             // Your repository name, with leading/trailing slashes
   output: 'static', 
 
   integrations: [
