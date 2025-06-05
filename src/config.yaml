@@ -1,9 +1,9 @@
 site:
   name: Moxin LLM
-  logoAlt: "Moxin LLM Company Logo" # <--- ADD OR UPDATE THIS for accessibility
-  site: 'https://astrowind.vercel.app'
-  base: '/'
-  trailingSlash: false
+  logoAlt: "Moxin LLM Company Logo"
+  site: 'https://moxin-org.github.io'      # CORRECTED: Your actual domain
+  base: '/moxin-llm-web/'                 # CORRECTED: Your repository name / base path
+  trailingSlash: false                    # This can usually stay as is
 
   googleSiteVerificationId: orcPxI47GSa-cRvY11tUe6iGg2IO_RPvnA1q95iEM3M
 
@@ -12,16 +12,17 @@ metadata:
   title:
     default: Moxin LLM
     template: '%s — Moxin LLM'
-  description: "\U0001F680 Suitable for Startups, Small Business, Sass Websites, Professional Portfolios, Marketing Websites, Landing Pages & Blogs."
+  description: "🚀 Moxin LLM: Truly Open, Fully Reproducible AI. High-performance language models for edge devices and research." # Consider updating your description too
   robots:
     index: true
     follow: true
   openGraph:
-    site_name: Moxin LLM
+    site_name: Moxin LLM # This is good
     type: website
+    # It's a good practice to also set a default og:image here if your theme supports it
   twitter:
-    handle: '@onwidget'
-    site: '@onwidget'
+    handle: '@moxin_org' # UPDATE if you have a specific X/Twitter handle for Moxin
+    site: '@moxin_org'   # UPDATE if you have a specific X/Twitter handle for Moxin
     cardType: summary_large_image
 
 i18n:
@@ -35,27 +36,27 @@ apps:
 
     post:
       isEnabled: true
-      permalink: '/%slug%' # Variables: %slug%, %year%, %month%, %day%, %hour%, %minute%, %second%, %category%
+      permalink: '/blog/%slug%' # Adjusted permalink to be nested under blog
       robots:
         index: true
 
     list:
       isEnabled: true
-      pathname: 'blog' # Blog main path, you can change this to "articles" (/articles)
+      pathname: 'blog' 
       robots:
         index: true
 
     category:
       isEnabled: true
-      pathname: 'category' # Category main path /category/some-category, you can change this to "group" (/group/some-category)
+      pathname: 'category' 
       robots:
         index: true
 
     tag:
       isEnabled: true
-      pathname: 'tag' # Tag main path /tag/some-tag, you can change this to "topics" (/topics/some-category)
+      pathname: 'tag' 
       robots:
-        index: false
+        index: false # Usually, tag pages are not indexed to avoid duplicate content issues, this is fine.
 
     isRelatedPostsEnabled: true
     relatedPostsCount: 4
@@ -63,7 +64,7 @@ apps:
 analytics:
   vendors:
     googleAnalytics:
-      id: null # or "G-XXXXXXXXXX"
+      id: null 
 
 ui:
-  theme: 'system' # Values: "system" | "light" | "dark" | "light:only" | "dark:only"
+  theme: 'system'
