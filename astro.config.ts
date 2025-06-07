@@ -29,6 +29,7 @@ export default defineConfig({
   site: 'https://moxin-org.github.io', // Your GitHub Pages domain
   base: '/moxin-llm-web/',             // Your repository name, with leading/trailing slashes
   output: 'static', 
+  trailingSlash: 'always',
 
   integrations: [
     tailwind({

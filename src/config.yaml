@@ -3,7 +3,7 @@ site:
   logoAlt: "Moxin LLM Company Logo"
   site: 'https://moxin-org.github.io'      # CORRECTED: Your actual domain
   base: '/moxin-llm-web/'                 # CORRECTED: Your repository name / base path
-  trailingSlash: false                    # This can usually stay as is
+  trailingSlash: true                    # This can usually stay as is
 
   googleSiteVerificationId: orcPxI47GSa-cRvY11tUe6iGg2IO_RPvnA1q95iEM3M
 

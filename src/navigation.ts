@@ -118,25 +118,31 @@ export const headerData = {
   links: [
     {
       text: 'LLM',
-      href: getPermalink('/products/llm'),
+      href: getPermalink('/research/llm'),
     },
     {
-      text: 'Products',
+      text: 'Research',
       links: [
         {
           text: 'VLM',
-          href: getPermalink('/products/vlm'),
+          href: getPermalink('/research/vlm'),
         },
         {
           text: 'VLA',
-          href: getPermalink('/products/vla'),
+          href: getPermalink('/research/vla'),
         },
         {
           text: 'TTS',
-          href: getPermalink('/products/tts'),
+          href: getPermalink('/research/tts'),
         },
       ],
     },
+
+    {
+      text: 'Use Case',
+      href: getPermalink('/use_case/use_case'),
+    },
+
     {
       text: 'About',
       href: getPermalink('/about'),
