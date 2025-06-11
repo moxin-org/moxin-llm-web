@@ -1,0 +1,250 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import Content from '~/components/widgets/Content.astro';
+import Stats from '~/components/widgets/Stats.astro';
+import Steps from '~/components/widgets/Steps.astro';
+import heroImage from '~/assets/images/hero-image-3.png';
+
+const metadata = {
+  title: 'Technology & Research | Moxin-LLM',
+  description: 'Dive into the technical details of Moxin-LLM, from its architecture and training data to our reinforcement learning process.',
+};
+---
+
+<Layout metadata={metadata}>
+  <section class="px-4 py-16 sm:py-20">
+    <div class="mx-auto max-w-6xl">
+      <div class="flex flex-col md:flex-row items-center gap-8">
+        <!-- Image Column -->
+        <div class="md:w-1/2">
+          <img
+            class="rounded-md w-full"
+            src={heroImage.src}
+            alt="Moxin LLM Hero Image"
+            width={700}
+            height={500}
+          />
+        </div>
+        <!-- Text Column -->
+        <div class="md:w-1/2 text-center md:text-left">
+          <h1 class="text-4xl font-bold tracking-tight sm:text-5xl">
+            Technology & Research
+          </h1>
+          <p class="mt-4 text-xl text-muted">
+            Moxin-LLM is built on a foundation of complete transparency. We adhere to the "open science" principles of the Model Openness Framework (MOF), releasing our training code, data, and checkpoints to foster a more inclusive and collaborative research environment.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="flex justify-center flex-wrap gap-2 px-4 py-8">
+    <button class="tech-tab-button btn btn-primary" data-target="architecture-content">Model Architecture</button>
+    <button class="tech-tab-button btn" data-target="training-content">Training & Data</button>
+    <button class="tech-tab-button btn" data-target="post-training-content">Post-Training & RL</button>
+  </div>
+
+  <div id="tech-content-panels">
+
+    <div id="architecture-content" class="tech-content-panel">
+      <Content
+        tagline="Core Design"
+        title="An Enhanced, Deeper Architecture"
+        items={[
+          {
+            title: 'Mistral Foundation',
+            description: 'We adopt the Mistral architecture to avoid the restrictive licenses and data contamination concerns associated with Llama-based models.',
+          },
+          {
+            title: 'Depth Extension',
+            description: 'Our model uses 36 transformer blocks instead of the original 32. This increased depth was empirically validated to improve learning capacity on complex tasks.',
+          },
+          {
+            title: 'Training Stability',
+            description: 'Pre-layer normalization is applied to stabilize the training process, along with a custom initialization scheme to mitigate gradient issues in a deep network.',
+          },
+        ]}
+      />
+      <Content
+        isReversed
+        class="pt-0"
+        tagline="Long-Context Handling"
+        title="Supporting up to 32K Tokens"
+        items={[
+          {
+            title: 'Sliding Window Attention (SWA)',
+            description: 'SWA enables efficient handling of long sequences by using a fixed-size attention window (W=4096), which dramatically reduces computational overhead.',
+          },
+          {
+            title: 'Grouped-Query Attention (GQA)',
+            description: 'GQA balances the speed of multi-query attention with the quality of multi-head attention, reducing memory requirements during decoding and improving throughput.',
+          },
+          {
+            title: 'Rolling Buffer Cache',
+            description: 'During inference, a rolling buffer cache with a fixed attention span is used. This reduces cache memory usage by approximately 8x on 32K token sequences without degrading performance.',
+          },
+        ]}
+      />
+      <Content
+        class="pt-0"
+        tagline="Tokenizer Innovation"
+        title="Mixture-of-Experts (MoE) Tokenizer"
+        items={[
+          {
+            title: 'Enhanced Multilingual Support',
+            description: 'We enhanced the tokenizer with a Mixture-of-Experts (MoE) structure. This allows it to work well not only for Latin characters but also for other languages like Chinese, Japanese, and Korean.',
+          },
+          {
+            title: 'Improved Efficiency',
+            description: 'The MoE structure on the tokenizer layer is one of our unique optimizations that contributes to the model\'s overall performance and efficiency.',
+          },
+        ]}
+      />
+    </div>
+
+    <div id="training-content" class="tech-content-panel hidden">
+      <Stats
+        stats={[
+          { title: 'Tokens Trained', amount: '2T+' },
+          { title: 'Training Phases', amount: '3' },
+          { title: 'Approx. Cost', amount: '$160,000' },
+        ]}
+      />
+      <Content
+        class="pt-0"
+        tagline="Text Data Sources"
+        title="Curating High-Quality Text"
+        items={[
+          {
+            title: 'SlimPajama',
+            description: 'We use the SlimPajama dataset, which is a rigorously cleaned and extensively deduplicated version of RedPajama, removing 49.6% of the original bytes to improve quality.',
+          },
+          {
+            title: 'DCLM-BASELINE',
+            description: 'We also utilize the DCLM-BASELINE dataset, which is derived from CommonCrawl and uses learnable models as quality filters to retain only the top 10% of documents.',
+          },
+        ]}
+      />
+      <Content
+        isReversed
+        class="pt-0"
+        tagline="Code Data Sources"
+        title="Improving Reasoning with Code"
+        items={[
+          {
+            title: 'the-stack-dedup',
+            description: 'We use a portion of the-stack-dedup dataset, which contains permissively-licensed source code from over 358 programming languages.',
+          },
+          {
+            title: 'Why Train on Code?',
+            description: 'Training on code data is crucial not only for code-generation tasks but also because its structured nature helps improve the LLM\'s overall reasoning capabilities.',
+          },
+        ]}
+      />
+      <Content
+        class="pt-0"
+        tagline="Training Configuration"
+        title="Three-Phase Training"
+        items={[
+          {
+            title: 'Phase 1 & 2: Context Extension',
+            description: 'The model is first trained with a 2,000 token context length, which is then increased to 4,000 tokens to capture longer dependencies.',
+          },
+          {
+            title: 'Phase 3: Capability Enhancement',
+            description: 'The final phase incorporates high-quality, capability-focused data from the training sets of various evaluation benchmarks to enhance reasoning and knowledge.',
+          },
+          {
+            title: 'Framework & Cost',
+            description: 'The pre-training was executed using the Colossal-AI framework and cost approximately $160,000.',
+          },
+        ]}
+      />
+    </div>
+
+    <div id="post-training-content" class="tech-content-panel hidden">
+       <Content
+        tagline="Moxin-7B-Instruct"
+        title="Creating a Helpful AI Assistant"
+        items={[
+          {
+            title: 'Open-Source Framework',
+            description: 'We adopt the open-source Tülu 3 dataset and framework for our post-training process to create the Moxin-Instruct model.',
+          },
+          {
+            title: 'Supervised Fine-Tuning (SFT)',
+            description: 'First, we fine-tune the base model on the Tülu 3 SFT Mixture dataset, which includes data to enhance math, coding, and instruction following.',
+          },
+          {
+            title: 'Direct Preference Optimization (DPO)',
+            description: 'Next, we continue training the SFT model using DPO on the Tülu 3 Preference Mixture dataset to better align it with user preferences.',
+          },
+        ]}
+      />
+      <Steps
+        class="pt-0"
+        tagline="Moxin-7B-Reasoning"
+        title="Enhancing Reasoning with Reinforcement Learning"
+        items={[
+          {
+            title: 'Step 1: SFT on Reasoning Data',
+            description: 'We first fine-tune the instruct model on high-quality reasoning data, including Open-Thoughts and OpenR1-Math-220k, which are datasets generated by collecting responses from DeepSeek R1.',
+            icon: 'tabler:school',
+          },
+          {
+            title: 'Step 2: Reinforcement Learning (GRPO)',
+            description: 'We then apply Group Relative Policy Optimization (GRPO), a pure RL technique inspired by DeepSeek, to enhance the model\'s chain-of-thought capabilities.',
+            icon: 'tabler:flame',
+          },
+          {
+            title: 'Step 3: Open RL Framework',
+            description: 'This RL process is conducted using DeepScaleR, an open-source framework designed to democratize RL for LLMs and reproduce DeepSeek R1.',
+            icon: 'tabler:tool',
+          },
+          {
+            title: 'Result: A Breakthrough in Small Models',
+            description: 'The outstanding performance of Moxin-Reasoning demonstrates that RL techniques like GRPO can be highly effective for smaller 7B models, not just massive ones.',
+            icon: 'tabler:check',
+          },
+        ]}
+      />
+    </div>
+
+  </div>
+</Layout>
+
+<script>
+  // Select all tab buttons and content panels
+  const tabs = document.querySelectorAll('.tech-tab-button');
+  const panels = document.querySelectorAll('.tech-content-panel');
+
+  // Add a click event listener to each tab button
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const targetId = tab.getAttribute('data-target');
+
+      // Deactivate all tabs: remove 'btn-primary' and add 'btn'
+      tabs.forEach(t => {
+        t.classList.remove('btn-primary');
+        if (!t.classList.contains('btn')) {
+          t.classList.add('btn');
+        }
+      });
+
+      // Activate the clicked tab: add 'btn-primary' and remove 'btn'
+      tab.classList.add('btn-primary');
+      tab.classList.remove('btn');
+
+      // Hide all content panels
+      panels.forEach(panel => {
+        panel.classList.add('hidden');
+      });
+
+      // Show the target content panel
+      const targetPanel = document.getElementById(targetId);
+      if (targetPanel) {
+        targetPanel.classList.remove('hidden');
+      }
+    });
+  });
+</script>

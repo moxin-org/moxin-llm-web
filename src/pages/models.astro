@@ -1,0 +1,104 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import Features from '~/components/widgets/Features.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+import heroImage from '~/assets/images/hero-image-2.png';
+
+const metadata = {
+  title: 'Model Hub | Moxin-LLM',
+  description: 'Explore the family of Moxin-LLM models, including our Base, Instruct, Reasoning, and Vision Language Models (VLM).',
+};
+---
+
+<Layout metadata={metadata}>
+  <section class="px-4 py-16 sm:py-20">
+    <div class="mx-auto max-w-6xl">
+      <div class="flex flex-col md:flex-row items-center gap-8">
+        <!-- Image Column -->
+        <div class="md:w-1/2">
+          <img
+            class="rounded-md w-full"
+            src={heroImage.src}
+            alt="Moxin LLM Hero Image"
+            width={700}
+            height={500}
+          />
+        </div>
+        <!-- Text Column -->
+        <div class="md:w-1/2 text-center md:text-left">
+          <h1 class="text-4xl font-bold tracking-tight sm:text-5xl">
+            Model Hub
+          </h1>
+          <p class="mt-4 text-xl text-muted">
+            Discover our family of open-source models, each tailored for specific tasks from general-purpose use to advanced reasoning and multimodal understanding.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Features
+    isGrid
+    columns={2}
+    items={[
+      {
+        title: 'Moxin-7B-Base',
+        description: `The foundational pre-trained model, ideal for researchers and developers looking to create highly customized, fine-tuned models. Based on an enhanced Mistral architecture, it was trained on over 2 trillion tokens from curated open datasets.
+        <div class="mt-4">
+          <a class="btn btn-sm" href="https://huggingface.co/moxin-org/moxin-llm-7b" target="_blank">HF Card</a>
+          <a class="btn btn-sm ml-2" href="https://github.com/moxin-org/Moxin-LLM" target="_blank">GitHub</a>
+        </div>`,
+        icon: 'tabler:box',
+      },
+      {
+        title: 'Moxin-7B-Instruct',
+        description: `A helpful and harmless AI assistant fine-tuned for instruction following and dialogue. This model was created by applying Supervised Fine-Tuning (SFT) and Direct Preference Optimization (DPO) to the Base model using the open Tülu 3 framework.
+        <div class="mt-4">
+          <a class="btn btn-sm" href="https://huggingface.co/moxin-org/moxin-instruct-7b" target="_blank">HF Card</a>
+          <a class="btn btn-sm ml-2" href="https://github.com/moxin-org/Moxin-LLM" target="_blank">GitHub</a>
+        </div>`,
+        icon: 'tabler:message-chatbot',
+      },
+      {
+        title: 'Moxin-7B-Reasoning',
+        description: `A specialist model with advanced reasoning capabilities for complex tasks like math, logic, and coding. It is enhanced with Group Relative Policy Optimization (GRPO), demonstrating that reinforcement learning is highly effective even for 7B-scale models.
+        <div class="mt-4">
+          <a class="btn btn-sm" href="https://huggingface.co/moxin-org/moxin-reasoning-7b" target="_blank">HF Card</a>
+          <a class="btn btn-sm ml-2" href="https://github.com/moxin-org/Moxin-LLM" target="_blank">GitHub</a>
+        </div>`,
+        icon: 'tabler:math-symbols',
+      },
+      {
+        title: 'Moxin-7B-VLM',
+        description: `A powerful vision-language model (VLM) for sophisticated multimodal understanding. It uses Moxin-7B-Base as its LLM backbone combined with DINOv2 and SigLIP visual encoders. This VLM outperforms other models with similar backbones on key benchmarks.
+        <div class="mt-4">
+          <a class="btn btn-sm" href="https://huggingface.co/moxin-org/moxin-vlm-7b" target="_blank">HF Card</a>
+          
+        </div>`,
+        icon: 'tabler:photo',
+      },
+    ]}
+  />
+
+  <CallToAction
+    title="Ready to Build?"
+    subtitle="All Moxin-LLM models, code, and data are available on Hugging Face and GitHub. Start experimenting and innovating today."
+    actions={[
+      {
+        variant: 'primary',
+        text: 'View on Hugging Face',
+        href: 'https://huggingface.co/moxin-org',
+        target: '_blank',
+        icon: 'tabler:cloud-download',
+      },
+      {
+        variant: 'secondary',
+        text: 'View on GitHub',
+        href: 'https://github.com/moxin-org/Moxin-LLM',
+        target: '_blank',
+        icon: 'tabler:brand-github',
+      }
+    ]}
+  />
+
+</Layout>

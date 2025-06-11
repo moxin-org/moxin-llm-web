@@ -117,26 +117,34 @@ export const headerData = {
   // ],
   links: [
     {
-      text: 'LLM',
-      href: getPermalink('/research/llm'),
+      text: 'Models',
+      href: getPermalink('/models'),
     },
     {
-      text: 'Research',
-      links: [
-        {
-          text: 'VLM',
-          href: getPermalink('/research/vlm'),
-        },
-        {
-          text: 'VLA',
-          href: getPermalink('/research/vla'),
-        },
-        {
-          text: 'TTS',
-          href: getPermalink('/research/tts'),
-        },
-      ],
+      text: 'Technology',
+      href: getPermalink('/technology'),
     },
+    {
+      text: 'Usage & Docs',
+      href: getPermalink('/usage'),
+    },
+    // {
+    //   text: 'Research',
+    //   links: [
+    //     {
+    //       text: 'VLM',
+    //       href: getPermalink('/research/vlm'),
+    //     },
+    //     {
+    //       text: 'VLA',
+    //       href: getPermalink('/research/vla'),
+    //     },
+    //     {
+    //       text: 'TTS',
+    //       href: getPermalink('/research/tts'),
+    //     },
+    //   ],
+    // },
 
     {
       text: 'Use Case',

@@ -1,0 +1,137 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import Content from '~/components/widgets/Content.astro';
+import Steps from '~/components/widgets/Steps.astro';
+import heroImage from '~/assets/images/hero-image-4.png';
+
+const metadata = {
+  title: 'Usage & Docs | Moxin-LLM',
+  description: 'Learn how to use, deploy, and fine-tune Moxin-LLM models with our official documentation and guides.',
+};
+---
+
+<Layout metadata={metadata}>
+  <section class="px-4 py-16 sm:py-20">
+    <div class="mx-auto max-w-6xl">
+      <div class="flex flex-col md:flex-row items-center gap-8">
+        <!-- Image Column -->
+        <div class="md:w-1/2">
+          <img
+            class="rounded-md w-full"
+            src={heroImage.src}
+            alt="Moxin LLM Hero Image"
+            width={700}
+            height={500}
+          />
+        </div>
+        <!-- Text Column -->
+        <div class="md:w-1/2 text-center md:text-left">
+          <h1 class="text-4xl font-bold tracking-tight sm:text-5xl">
+            Usage & Documentation
+          </h1>
+          <p class="mt-4 text-xl text-muted">
+            Get started with Moxin-LLM. Find guides for running inference, optimizing for deployment, and fine-tuning the model for your own applications.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Content
+    tagline="Quick Start"
+    title="Run Moxin-LLM in Minutes"
+    isCentered
+  >
+    <Fragment slot="content">
+      <p class="text-lg">Get up and running quickly using the Hugging Face `transformers` library. This example uses the `Moxin-7B-Instruct` model.</p>
+      <div class="mt-6 mx-auto max-w-3xl rounded-md bg-slate-100 dark:bg-slate-800 p-4 text-left text-sm">
+        {/* The is:raw directive tells Astro to render the content as-is, without processing it. This fixes the error. */}
+        <pre is:raw class="overflow-x-auto">
+<code class="language-python">
+from transformers import AutoTokenizer, AutoModelForCausalLM
+
+model_id = "moxin-org/moxin-instruct-7b"
+
+tokenizer = AutoTokenizer.from_pretrained(model_id)
+model = AutoModelForCausalLM.from_pretrained(model_id)
+
+# Format the prompt for instruction-following
+prompt = "Can you explain the concept of regularization in machine learning?"
+formatted_prompt = f"&lt;|user|&gt;\n{prompt}&lt;|end|&gt;\n&lt;|assistant|&gt;"
+
+inputs = tokenizer(formatted_prompt, return_tensors="pt")
+outputs = model.generate(**inputs, max_new_tokens=200)
+
+print(tokenizer.decode(outputs[0], skip_special_tokens=True))
+</code>
+</pre>
+      </div>
+    </Fragment>
+  </Content>
+
+  <Content
+    tagline="Model Guides"
+    title="Prompting for Best Results"
+    items={[
+      {
+        title: 'Using Moxin-7B-Instruct',
+        description:
+          'The instruct model is fine-tuned for dialogue and following commands. For best results, structure your prompts as a conversation. The example above shows a standard format.',
+      },
+      {
+        title: 'Using Moxin-7B-Reasoning',
+        description:
+          'This model excels at chain-of-thought (CoT) tasks like math and logic. It was enhanced with Group Relative Policy Optimization (GRPO). To leverage its full potential, ask it to "think step-by-step" or "show its work."',
+      },
+    ]}
+  />
+
+  <Content
+    isReversed
+    tagline="Deployment & Optimization"
+    title="High Performance on the Edge"
+    items={[
+      {
+        title: 'Optimized for On-Device AI',
+        description: 'Moxin-LLM is specifically designed for efficient performance on edge devices like PCs and mobile phones. This focus addresses the need for privacy and low-latency applications.',
+      },
+      {
+        title: 'The OminiX Engine',
+        description: 'For best performance, we recommend using our self-developed OminiX inference and fine-tuning engine. It is optimized for various edge hardware, including domestic NPUs.',
+      },
+      {
+        title: 'Proven Efficiency',
+        description: 'Our optimization techniques are powerful enough to deploy a 235B parameter model on a single notebook computer, achieving speeds of around 14 tokens per second.',
+      },
+    ]}
+  />
+
+
+  <Steps
+    title="Fine-Tuning Moxin-LLM"
+    subtitle="Leverage Moxin's complete openness to create your own specialized models. Our transparency with training data and scripts makes the fine-tuning process more efficient and effective."
+    items={[
+      {
+        title: 'Step 1: Start with Moxin-7B-Base',
+        description: 'The `Moxin-7B-Base` model is the ideal starting point for any custom fine-tuning project.',
+        icon: 'tabler:box',
+      },
+      {
+        title: 'Step 2: Prepare Your Custom Dataset',
+        description: 'Collect and format your data for a specific task, such as robotics commands, professional translation terms, or any other domain-specific knowledge.',
+        icon: 'tabler:database-export',
+      },
+      {
+        title: 'Step 3: Run the Fine-Tuning Process',
+        description: 'Use standard open-source training scripts to fine-tune the model on your dataset. Our open approach ensures you have full control and visibility.',
+        icon: 'tabler:flame',
+      },
+      {
+        title: 'Step 4: Deploy Your Custom Model',
+        description: 'Once trained, your specialized model is ready to be deployed, bringing powerful, customized AI to your specific application.',
+        icon: 'tabler:rocket',
+      },
+    ]}
+  />
+
+</Layout>

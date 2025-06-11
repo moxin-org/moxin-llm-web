@@ -27,7 +27,7 @@ const metadata = {
         target: '_blank',
         icon: 'tabler:download',
       },
-      { text: 'Learn more', href: '#features' },
+      { text: 'Read Paper', href: 'https://arxiv.org/pdf/2210.17323' },
     ]}
     image={{ src: '~/assets/images/hero-image.png', alt: 'Moxin LLM Hero Image' }}
   >
@@ -37,10 +37,10 @@ const metadata = {
 
     <Fragment slot="subtitle">
       <span class="hidden sm:inline">
-        <span class="font-semibold">Moxin LLM</span> is a high-performance language model, offering true openness and complete reproducibility.
+        <span class="font-semibold">Moxin LLM</span> is a high-performance language model.
       </span>
       <span class="block mb-1 sm:hidden font-bold text-blue-600">Moxin LLM: Open & Reproducible.</span>
-      Achieving state-of-the-art performance on Zero-shot tasks, Moxin LLM is designed for efficiency, especially on edge devices.
+      Achieving SOTA performance on Zero-shot tasks, it is designed for efficiency, especially on edge devices.
     </Fragment>
   </Hero>
 
@@ -92,46 +92,7 @@ const metadata = {
     ]}
   />
 
-  <Content
-    isReversed
-    tagline="Moxin Ecosystem"
-    title="The Moxin Personal AI Stack"
-    items={[
-      {
-        title: 'Moxin LLM: The Core Model',
-        description:
-          'A high-performance, truly open, and fully reproducible language model at the heart of the ecosystem.',
-      },
-      {
-        title: 'MoFa: Intelligent Agent Framework',
-        description:
-          'Leverages the capabilities of Moxin LLM to build intelligent agents.',
-      },
-      {
-        title: 'Moly: Rust LLM Client',
-        description:
-          'Developer tools, including a Rust LLM client, for interacting with the Moxin ecosystem.',
-      },
-      {
-        title: 'OminiX: Edge Inference & Fine-tuning Engine',
-        description:
-          'Ensures Moxin LLM runs efficiently on edge devices with optimized performance.',
-      },
-    ]}
-    image={{
-      src: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
-      alt: 'Moxin Personal AI Stack Concept Image',
-    }}
-  >
-    <Fragment slot="content">
-      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">A Comprehensive AI Ecosystem</h3>
-      Moxin LLM, together with MoFa, Moly, and OminiX, forms the Moxin Personal AI Stack, aiming to build a strong contributor community.
-    </Fragment>
 
-    <Fragment slot="bg">
-      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
-    </Fragment>
-  </Content>
 
   <Content
     isAfterContent
@@ -207,6 +168,47 @@ const metadata = {
       <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
     </Fragment>
   </Content>
+
+  <Content
+  isReversed
+  tagline="Moxin Ecosystem"
+  title="The Moxin Personal AI Stack"
+  items={[
+    {
+      title: 'Moxin LLM: The Core Model',
+      description:
+        'A high-performance, truly open, and fully reproducible language model at the heart of the ecosystem.',
+    },
+    {
+      title: 'MoFa: Intelligent Agent Framework',
+      description:
+        'Leverages the capabilities of Moxin LLM to build intelligent agents.',
+    },
+    {
+      title: 'Moly: Rust LLM Client',
+      description:
+        'Developer tools, including a Rust LLM client, for interacting with the Moxin ecosystem.',
+    },
+    {
+      title: 'OminiX: Edge Inference & Fine-tuning Engine',
+      description:
+        'Ensures Moxin LLM runs efficiently on edge devices with optimized performance.',
+    },
+  ]}
+  image={{
+    src: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
+    alt: 'Moxin Personal AI Stack Concept Image',
+  }}
+>
+  <Fragment slot="content">
+    <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">A Comprehensive AI Ecosystem</h3>
+    Moxin LLM, together with MoFa, Moly, and OminiX, forms the Moxin Personal AI Stack, aiming to build a strong contributor community.
+  </Fragment>
+
+  <Fragment slot="bg">
+    <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+  </Fragment>
+</Content>
 
   <Steps
     title="Get Started with Moxin LLM."
