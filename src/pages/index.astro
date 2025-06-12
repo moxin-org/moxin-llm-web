@@ -19,18 +19,22 @@ const metadata = {
 
 <Layout metadata={metadata}>
   <Hero
-    actions={[
-      {
-        variant: 'primary',
-        text: 'Get on Hugging Face',
-        href: 'https://huggingface.co/moxin-org',
-        target: '_blank',
-        icon: 'tabler:download',
-      },
-      { text: 'Read Paper', href: 'https://arxiv.org/pdf/2210.17323' },
-    ]}
-    image={{ src: '~/assets/images/hero-image.png', alt: 'Moxin LLM Hero Image' }}
-  >
+  actions={[
+    {
+      variant: 'primary',
+      text: 'Get on Hugging Face',
+      href: 'https://huggingface.co/moxin-org',
+      target: '_blank',
+      icon: 'tabler:download',
+    },
+    { 
+      text: 'Read Paper', 
+      href: 'https://arxiv.org/pdf/2412.06845',
+      target: '_blank' 
+    },
+  ]}
+  image={{ src: '~/assets/images/hero-image.png', alt: 'Moxin LLM Hero Image' }}
+>
     <Fragment slot="title">
       Moxin LLM <br>Truly <span class="text-accent dark:text-white"> Open</span>, Fully <span class="text-accent dark:text-white"> Reproducible</span>
     </Fragment>
@@ -244,7 +248,7 @@ const metadata = {
   />
 
   <BlogLatestPosts
-    title="Latest News & Tutorials from Moxin LLM"
+    title="Blogs"
     information={`Stay updated with the latest developments, technical deep-dives, and practical tutorials for Moxin LLM. 
                   Learn how to leverage Moxin for your edge AI projects and contribute to our growing community.
                   We'll be sharing insights on reproducibility, performance benchmarks, and new model releases.`}
@@ -302,10 +306,10 @@ const metadata = {
     actions={[
       {
         variant: 'primary',
-        text: 'Explore Moxin on GitHub',
-        href: 'https://github.com/moxin-org/Moxin-LLM', 
+        text: 'Join Moxin\'s Discord',
+        href: 'https://discord.gg/dawBjMrsSD', 
         target: '_blank',
-        icon: 'tabler:brand-github', 
+        icon: 'tabler:brand-discord', 
       },
     ]}
   >
