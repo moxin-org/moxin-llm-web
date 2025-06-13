@@ -148,7 +148,7 @@ export const headerData = {
 
     {
       text: 'Use Case',
-      href: getPermalink('/use_case/use_case'),
+      href: getPermalink('/use_case'),
     },
 
     {
