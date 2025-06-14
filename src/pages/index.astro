@@ -6,7 +6,6 @@ import Note from '~/components/widgets/Note.astro';
 import Features from '~/components/widgets/Features.astro';
 import Steps from '~/components/widgets/Steps.astro';
 import Content from '~/components/widgets/Content.astro';
-import BlogLatestPosts from '~/components/widgets/BlogLatestPosts.astro';
 import FAQs from '~/components/widgets/FAQs.astro';
 import Stats from '~/components/widgets/Stats.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
@@ -136,44 +135,6 @@ const metadata = {
   </Content>
 
   <Content
-    isReversed
-    isAfterContent
-    tagline="Community & Growth"
-    title="Building a Vibrant Moxin Ecosystem"
-    items={[
-      {
-        title: 'Active Community Channels',
-        description:
-          'Join our official Discord and GitHub Discussions to connect, ask questions, and share your experiences.',
-      },
-      {
-        title: 'Focus on Developer Resources',
-        description:
-          'We are committed to providing comprehensive tutorials, documentation, and support for running and fine-tuning Moxin LLM locally.',
-      },
-      {
-        title: 'Open to Contributions',
-        description:
-          'We encourage contributions to Moxin LLM, OminiX, and the broader ecosystem to foster innovation and collaborative development.',
-      },
-      {
-        title: 'Partnership Opportunities',
-        description: `Seeking collaborations with hardware manufacturers, OS providers, and organizations like the Linux Foundation to expand Moxin's reach.`,
-      },
-    ]}
-    image={{
-      src: 'https://images.unsplash.com/photo-1611462985358-60d3498e0364?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
-      alt: 'Moxin LLM Community Concept Image',
-    }}
-  >
-    <Fragment slot="content">Join us in shaping the future of open and reproducible AI on the edge.</Fragment>
-
-    <Fragment slot="bg">
-      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
-    </Fragment>
-  </Content>
-
-  <Content
   isReversed
   tagline="Moxin Ecosystem"
   title="The Moxin Personal AI Stack"
@@ -245,13 +206,6 @@ const metadata = {
       src: 'https://images.unsplash.com/photo-1616198814651-e71f960c3180?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80',
       alt: 'Steps to use Moxin LLM Concept Image',
     }}
-  />
-
-  <BlogLatestPosts
-    title="Blogs"
-    information={`Stay updated with the latest developments, technical deep-dives, and practical tutorials for Moxin LLM. 
-                  Learn how to leverage Moxin for your edge AI projects and contribute to our growing community.
-                  We'll be sharing insights on reproducibility, performance benchmarks, and new model releases.`}
   />
 
   <FAQs
