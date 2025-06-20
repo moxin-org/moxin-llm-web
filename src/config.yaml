@@ -1,28 +1,27 @@
 site:
-  name: Moxin LLM
+  name: Moxin AI
   logoAlt: "Moxin LLM Company Logo"
-  site: 'https://moxin-org.github.io'      # CORRECTED: Your actual domain
-  base: '/moxin-llm-web/'                 # CORRECTED: Your repository name / base path
-  trailingSlash: true                    # This can usually stay as is
+  site: 'https://moxin-ai.org'      # CORRECTED: Your actual custom domain
+  base: '/'                 # CORRECTED: Set to root path as you're using a custom domain at the root
+  trailingSlash: true
 
   googleSiteVerificationId: orcPxI47GSa-cRvY11tUe6iGg2IO_RPvnA1q95iEM3M
 
 # Default SEO metadata
 metadata:
   title:
-    default: Moxin LLM
-    template: '%s — Moxin LLM'
-  description: "🚀 Moxin LLM: Truly Open, Fully Reproducible AI. High-performance language models for edge devices and research." # Consider updating your description too
+    default: Moxin AI
+    template: '%s — Moxin AI'
+  description: "🚀 Moxin AI: Truly Open, Fully Reproducible AI. High-performance language models for edge devices and research."
   robots:
     index: true
     follow: true
   openGraph:
-    site_name: Moxin LLM # This is good
+    site_name: Moxin AI
     type: website
-    # It's a good practice to also set a default og:image here if your theme supports it
   twitter:
-    handle: '@moxin_org' # UPDATE if you have a specific X/Twitter handle for Moxin
-    site: '@moxin_org'   # UPDATE if you have a specific X/Twitter handle for Moxin
+    handle: '@moxin_org'
+    site: '@moxin_org'
     cardType: summary_large_image
 
 i18n:
@@ -36,27 +35,27 @@ apps:
 
     post:
       isEnabled: true
-      permalink: '/blog/%slug%' # Adjusted permalink to be nested under blog
+      permalink: '/blog/%slug%'
       robots:
         index: true
 
     list:
       isEnabled: true
-      pathname: 'blog' 
+      pathname: 'blog'
       robots:
         index: true
 
     category:
       isEnabled: true
-      pathname: 'category' 
+      pathname: 'category'
       robots:
         index: true
 
     tag:
       isEnabled: true
-      pathname: 'tag' 
+      pathname: 'tag'
       robots:
-        index: false # Usually, tag pages are not indexed to avoid duplicate content issues, this is fine.
+        index: false
 
     isRelatedPostsEnabled: true
     relatedPostsCount: 4
@@ -64,7 +63,7 @@ apps:
 analytics:
   vendors:
     googleAnalytics:
-      id: null 
+      id: null
 
 ui:
   theme: 'system'

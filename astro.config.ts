@@ -11,9 +11,6 @@ import icon from 'astro-icon';
 import compress from 'astro-compress';
 import type { AstroIntegration } from 'astro';
 
-// Assuming 'astrowind' is correctly imported. If it's a local file, ensure the path is correct.
-// If it's from 'node_modules', it should be `import astrowind from 'some-package-name';`
-// For now, I'll assume your local path `./vendor/integration` is correct.
 import astrowind from './vendor/integration';
 
 import { readingTimeRemarkPlugin, responsiveTablesRehypePlugin, lazyImagesRehypePlugin } from './src/utils/frontmatter';
@@ -26,9 +23,9 @@ const whenExternalScripts = (items: (() => AstroIntegration) | (() => AstroInteg
 
 export default defineConfig({
   // GitHub Pages settings
-  site: 'https://moxin-org.github.io', // Your GitHub Pages domain
-  base: '/moxin-llm-web/',             // Your repository name, with leading/trailing slashes
-  output: 'static', 
+  site: 'https://moxin-ai.org', // <--- CHANGE THIS LINE to your custom domain 
+  // base: '/moxin-llm-web/', // <--- REMOVE OR COMMENT OUT THIS LINE. Not needed with custom domain at root.
+  output: 'static',
   trailingSlash: 'always',
 
   integrations: [
