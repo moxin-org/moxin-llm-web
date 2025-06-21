@@ -24,7 +24,6 @@ const whenExternalScripts = (items: (() => AstroIntegration) | (() => AstroInteg
 export default defineConfig({
   // GitHub Pages settings
   site: 'https://moxin-ai.org', // <--- CHANGE THIS LINE to your custom domain 
-  // base: '/moxin-llm-web/', // <--- REMOVE OR COMMENT OUT THIS LINE. Not needed with custom domain at root.
   output: 'static',
   trailingSlash: 'always',
 
