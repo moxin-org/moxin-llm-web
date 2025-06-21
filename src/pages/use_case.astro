@@ -1,6 +1,8 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
-import Hero from '~/components/widgets/Hero.astro';
+import heroImage from '~/assets/images/hero-image-5.png';
+import Content from '~/components/widgets/Content.astro';
+import MoYoYoLogo from '/src/assets/images/MoYoYo-logo-shape.png';
 
 
 const metadata = {
@@ -9,18 +11,73 @@ const metadata = {
 ---
 
 <Layout metadata={metadata}>
-  <Hero
-  >
-    <Fragment slot="title">
-      Use Case
-    </Fragment>
 
-    <Fragment slot="subtitle">
-      <span class="hidden sm:inline">
-        <span class="font-semibold">Pending for info
+  <section class="px-4 py-16 sm:py-20">
+    <div class="mx-auto max-w-6xl">
+      <div class="flex flex-col md:flex-row items-center gap-8">
+        <div class="md:w-1/2">
+          <img
+            class="rounded-md w-full"
+            src={heroImage.src}
+            alt="Moxin AI Hero Image"
+            width={700}
+            height={500}
+          />
+        </div>
+        <div class="md:w-1/2 text-center md:text-left">
+          <h1 class="text-4xl font-bold tracking-tight sm:text-5xl">
+            Use Case
+          </h1>
+          <p class="mt-4 text-xl text-muted">
+            Projects by Moxin AI and its team.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-          
-    </Fragment>
-  </Hero>
+  <Content
+
+  items={[
+    {
+      title: 'YoYo Translator',
+      description:
+        'Real-time, offline voice translation for precise, cross-language professional communication.',
+    },
+    {
+      title: 'Deepseek Full-Size on AI PC',
+      description:
+        'Qwen3-253B model deployed on AMD Ryzen AI Max+ 395 mini PC, achieving 14 tokens/s inference speed with AMD and GMK.',
+    },
+    {
+      title: 'Local AI: Chat, Agents, Digital Humans',
+      description:
+        'Offline voice chat, intelligent agents, and digital human solutions with speech recognition, understanding, and TTS, used in scenarios like Werewolf voice games.',
+    },
+    {
+      title: 'Embodied AI',
+      description:
+        'Enables robots to perceive, understand, and interact with the real world for tasks like grasping and transporting, applicable in service, education, and manufacturing.',
+    },
+  ]}
+  image={{
+    src: MoYoYoLogo,
+    alt: 'MoYoYo Logo Blue',
+  }}
+>
+  <Fragment slot="content">
+    <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">MoYoYo</h3>
+    MoYoYo delivers efficient multimodal Generative AI training and deployment, including the YoYo Translator and accelerated Deepseek deployments on AI PCs. <br><br>The MoYoYo team contributes to Moxin AI.
+    <div class="mt-4"> {/* Added a div for spacing */}
+      <a href="https://www.moyoyo.ai/" target="_blank" rel="noopener" class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700">
+        Visit MoYoYo AI
+      </a>
+    </div>
+  </Fragment>
+
+  <Fragment slot="bg">
+    <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+  </Fragment>
+</Content>
 
 </Layout>
