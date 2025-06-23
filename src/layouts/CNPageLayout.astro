@@ -1,11 +1,10 @@
 ---
-// src/layouts/PageLayout.astro (now explicitly for English)
 import Layout from '~/layouts/Layout.astro';
-import Header from '~/components/widgets/Header.astro';
+import Header from '~/components/widgets/Header.astro'; // Assuming this is the Header component
 import Footer from '~/components/widgets/Footer.astro';
 import Announcement from '~/components/widgets/Announcement.astro';
 
-import { headerData, footerData } from '~/navigation'; // This now refers to your English navigation
+import { headerData, footerData } from '~/CNnavigation'; // Correctly importing Chinese nav data
 
 import type { MetaData } from '~/types';
 

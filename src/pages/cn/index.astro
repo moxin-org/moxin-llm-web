@@ -1,0 +1,204 @@
+---
+import Layout from '~/layouts/CNPageLayout.astro';
+
+import Hero from '~/components/widgets/Hero.astro';
+import Note from '~/components/widgets/Note.astro';
+import Features from '~/components/widgets/Features.astro';
+import Steps from '~/components/widgets/Steps.astro';
+import Content from '~/components/widgets/Content.astro';
+import FAQs from '~/components/widgets/FAQs.astro';
+import Stats from '~/components/widgets/Stats.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+
+const metadata = {
+  // Title remains the same, 'Moxin AI' is kept as is.
+  title: 'Moxin AI | 真正开放，完全可复现的AI',
+  ignoreTitleTemplate: true,
+};
+---
+
+<Layout metadata={metadata}>
+  <Hero
+    actions={[
+      {
+        variant: 'primary',
+        text: '前往 Hugging Face', href: 'https://huggingface.co/moxin-org',
+        target: '_blank',
+        icon: 'tabler:download',
+      },
+      {
+        text: '阅读论文', href: 'https://arxiv.org/abs/2412.06845',
+        target: '_blank',
+      },
+    ]}
+    image={{ src: '~/assets/images/hero-image.png', alt: 'Moxin AI 主页图片' }} >
+    <Fragment slot="title">
+      Moxin LLM/VLM <br />真正<span class="text-accent dark:text-white">开放</span>，完全<span class="text-accent dark:text-white">可复现</span>
+    </Fragment>
+
+    <Fragment slot="subtitle">
+      <span class="hidden sm:inline">
+        <span class="font-semibold">Moxin LLM</span> 是一款高性能语言模型。
+      </span>
+      在零样本任务上实现了SOTA（最先进）性能，专为高效运行而设计，尤其适用于边缘设备。
+    </Fragment>
+  </Hero>
+
+
+  <Note title="Moxin AI 核心理念：" description="真正开放，完全可复现，高性能。" />
+
+  <Features
+    id="features"
+    tagline="核心特性" title="为何选择 Moxin AI？" subtitle="探索 Moxin AI 的优势，专为寻求透明且强大的语言模型的开发者和研究人员而设计。" items={[
+      {
+        title: '彻底的开放性与可复现性', description:
+          '我们提供模型权重、详细的训练数据构成和脚本，确保透明度，并支持深入研究和定制。', icon: 'tabler:database-search',
+      },
+      {
+        title: 'SOTA级性能', description:
+          '在多个零样本基准测试中取得了SOTA（最先进）成果，性能媲美DeepSeek等领先模型。', icon: 'tabler:rocket',
+      },
+      {
+        title: '强大的边缘AI引擎', description:
+          'Moxin AI 旨在成为开源边缘语言模型的领导者，性能可与Phi和Gemma媲美，并具有卓越的可复现性。', icon: 'tabler:device-mobile-code',
+      },
+      {
+        title: '先进的技术栈', description:
+          '采用GPRO增强学习和Tokenizer MOE架构，以提升性能和效率。', icon: 'tabler:brain',
+      },
+      {
+        title: '无缝OminiX集成', description:
+          '配合自主研发的OminiX推理和微调引擎，可在包括国产NPU在内的各种边缘硬件上实现最佳性能。', icon: 'tabler:settings-cog',
+      },
+      {
+        title: '数据透明度与可定制性', description:
+          '可访问模型权重、训练数据构成和脚本，从而能针对机器人或翻译等特定应用进行高效微调。', icon: 'tabler:adjustments-horizontal',
+      },
+    ]}
+  />
+
+  <Content
+    isAfterContent
+    tagline="应用潜力" title="Moxin AI：开启无限可能" items={[
+      {
+        title: '机器人指令微调', description: `利用数据透明性，高效微调 Moxin AI，使其适用于特定的机器人指令和应用。`, },
+      {
+        title: '专业翻译', description:
+          '通过专业术语定制模型，实现高质量、特定领域的翻译任务。',
+      },
+      {
+        title: '边缘AI创新', description:
+          "直接在手机和个人电脑等设备上运行AI应用，确保数据隐私和低延迟。",
+      },
+      {
+        title: '研究与开发', description:
+          'Moxin AI 的开放性和可复现性使其成为学术研究和探索AI新前沿的理想平台。', },
+    ]}
+    image={{
+      src: 'https://images.unsplash.com/photo-1600132806370-bf17e65e942f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2194&q=80',
+      alt: 'Moxin AI 应用示例概念图', }}
+  >
+    <Fragment slot="content">Moxin AI 的灵活性开启了广泛的创新应用之门。</Fragment> <Fragment slot="bg">
+      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+    </Fragment>
+  </Content>
+
+  <Content
+    isReversed
+    tagline="Moxin 生态系统" title="Moxin 个人AI堆栈" items={[
+      {
+        title: 'Moxin AI：核心模型', description:
+          '一个高性能、真正开放且完全可复现的语言模型，是整个生态系统的核心。',
+      },
+      {
+        title: 'MoFa：智能代理框架', description:
+          '利用 Moxin AI 的能力构建智能代理。', },
+      {
+        title: 'Moly：Rust LLM客户端', description:
+          '开发者工具，包括一个Rust LLM客户端，用于与 Moxin 生态系统进行交互。', },
+      {
+        title: 'OminiX：边缘推理与微调引擎', description:
+          '确保 Moxin AI 在边缘设备上高效运行，并实现优化性能。', },
+    ]}
+    image={{
+      src: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
+      alt: 'Moxin 个人AI堆栈概念图', }}
+  >
+    <Fragment slot="content">
+      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">全面的AI生态系统</h3>
+      Moxin AI 与 MoFa、Moly 和 OminiX 共同构成了 Moxin 个人AI堆栈，旨在建立强大的贡献者社区。
+    </Fragment>
+
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+    </Fragment>
+  </Content>
+
+  <Steps
+    title="开始使用 Moxin AI" items={[
+      {
+        title: '第一步：<span class="font-medium">探索模型</span>', description:
+          '访问我们的Hugging Face页面，了解 Moxin AI 模型，如 Moxin-7B-Base, Chat, Instruct, 和 Reasoning。', icon: 'tabler:atom-2',
+      },
+      {
+        title: '第二步：<span class="font-medium">获取资源</span>', description:
+          '查看我们的GitHub仓库，获取技术报告、脚本以及使用和微调 Moxin AI 的指南。', icon: 'tabler:files',
+      },
+      {
+        title: '第三步：<span class="font-medium">使用 OminiX 部署</span>', description:
+          '利用 OminiX 引擎，在您的边缘设备上部署 Moxin AI，以获得最佳性能。', icon: 'tabler:player-play',
+      },
+      {
+        title: '准备好创新！', description: '开始使用真正开放且可复现的LLM构建您的AI应用吧。', icon: 'tabler:check',
+      },
+    ]}
+    image={{
+      src: 'https://images.unsplash.com/photo-1616198814651-e71f960c3180?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80',
+      alt: '使用 Moxin AI 的步骤概念图', }}
+  />
+
+  <FAQs
+    title="关于 Moxin AI 的常见问题" subtitle="了解关于 Moxin AI 功能、开放性以及如何参与的常见问题解答。" tagline="Moxin AI 常见问题解答" classes={{ container: 'max-w-6xl' }}
+    items={[
+      {
+        title: 'Moxin AI 为何称之为“真正开放”？', description: 'Moxin AI 不仅提供模型权重，还提供详细的训练数据构成和脚本，实现了完全的可复现性和深度定制。', },
+      {
+        title: 'Moxin AI 的主要技术优势是什么？', description: 'Moxin AI 采用GPRO增强学习和Tokenizer MOE架构，助力其实现SOTA级性能和效率，尤其是在边缘设备上。', },
+      {
+        title: '如何 Moxin AI 在边缘设备上运行？', description: 'Moxin AI 专为边缘AI设计，可利用OminiX推理和微调引擎高效运行，该引擎针对包括NPU在内的各种硬件进行了优化。', },
+      {
+        title: '我可以使用 Moxin AI 构建哪些应用？', description: '其可定制性使其适用于多种应用，包括机器人技术、专业翻译、设备端智能助手以及本地知识库应用等。', },
+      {
+        title: '我如何为 Moxin AI 项目做出贡献？', description: '我们欢迎您的贡献！您可以参与模型优化、开发新的用例、改进文档或协助构建OminiX引擎。加入我们的GitHub和Discord社区了解更多。', },
+      {
+        title: '我在哪里可以找到 Moxin AI 模型和资源？', description: '模型可在 Hugging Face (moxin-org) 获取，您可以在我们的GitHub仓库 (moxin-org/Moxin-LLM) 找到代码、技术报告等更多内容。', },
+    ]}
+  />
+
+  <Stats
+    stats={[
+      { title: 'Hugging Face 下载量', amount: '2K+' },
+      { title: 'GitHub 星标数', amount: '124+' },
+      { title: '活跃模型数量', amount: '4+' },
+      { title: '社区成员', amount: '持续增长' },
+    ]}
+  />
+
+  <CallToAction
+    actions={[
+      {
+        variant: 'primary',
+        text: '加入 Moxin Discord', href: 'https://discord.gg/MzzC64xfu6',
+        target: '_blank',
+        icon: 'tabler:brand-discord',
+      },
+    ]}
+  >
+    <Fragment slot="title">
+      加入 Moxin <br class="block sm:hidden" /><span class="sm:whitespace-nowrap">社区</span> </Fragment>
+
+    <Fragment slot="subtitle">
+      成为真正开放、可复现、高性能AI运动的一部分。<br class="hidden md:inline" />立即开始构建和贡献吧！
+    </Fragment>
+  </CallToAction>
+</Layout>

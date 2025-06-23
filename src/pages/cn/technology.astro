@@ -1,0 +1,83 @@
+---
+import Layout from '~/layouts/CNPageLayout.astro';
+import Content from '~/components/widgets/Content.astro';
+import Stats from '~/components/widgets/Stats.astro';
+import Steps from '~/components/widgets/Steps.astro';
+import heroImage from '~/assets/images/hero-image-3.png';
+
+const metadata = {
+  // Translated title: "技术与研究" is standard for "Technology & Research"
+  title: '技术与研究',
+  // Translated description: "深入了解 Moxin-LLM 的技术细节，包括其架构、训练数据以及我们的强化学习过程。"
+  description: '深入了解 Moxin-LLM 的技术细节，包括其架构、训练数据以及我们的强化学习过程。',
+};
+---
+
+<Layout metadata={metadata}>
+  <section class="px-4 py-16 sm:py-20">
+    <div class="mx-auto max-w-6xl">
+      <div class="flex flex-col md:flex-row items-center gap-8">
+        <div class="md:w-1/2">
+          <img
+            class="rounded-md w-full"
+            src={heroImage.src}
+            alt="Moxin LLM 技术" width={700}
+            height={500}
+          />
+        </div>
+        <div class="md:w-1/2 text-center md:text-left">
+          <h1 class="text-4xl font-bold tracking-tight sm:text-5xl">
+            技术与研究 </h1>
+          <p class="mt-4 text-xl text-muted">
+            Moxin-LLM 建立在完全透明的基础之上。我们遵循模型开放性框架 (MOF) 的“开放科学”原则，发布我们的训练代码、数据和检查点，以促进更具包容性和协作性的研究环境。 </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Stats
+    title="Moxin-LLM 概览" stats={[
+      { title: '训练 Token 数量', amount: '2T+' }, { title: '上下文长度', amount: '32K' }, { title: '训练成本', amount: '$160,000' }, { title: '开放性级别', amount: 'MOF 开放科学' }, ]}
+  />
+
+  <Content
+    tagline="核心架构" title="构建更好的基础" items={[
+      {
+        title: '增强型 Mistral 基础架构', description: '我们将 Mistral 架构扩展到 36 个 Transformer 块（从 32 个增加），以提高学习能力。这避免了与其他模型相关的限制性许可和数据污染问题。', },
+      {
+        title: '长上下文效率', description: '通过使用滑动窗口注意力 (SWA) 和滚动缓冲区缓存，我们的模型支持 32K 的上下文长度，同时与标准方法相比，内存使用量减少约 8 倍。', },
+      {
+        title: '创新的 MoE 分词器', description: '独特的专家混合 (MoE) 结构在分词器层面提供了对多种语言（包括中文、日语和韩语，而不仅仅是拉丁字符）的增强高效支持。', },
+    ]}
+  />
+
+  <Content
+    isReversed
+    tagline="数据与训练" title="优质数据铸就卓越性能" items={[
+      {
+        title: '高质量文本语料库', description: '我们的文本数据混合了 SlimPajama（一个经过清理、去重后的 RedPajama 版本）和 DCLM-BASELINE，后者使用质量过滤器仅保留网络文档中前 10% 的优质内容。', },
+      {
+        title: '通过代码进行推理', description: '我们整合了 the-stack-dedup 数据集，其中包含来自 358 种编程语言的代码。这不仅支持代码生成，还提升了模型的整体逻辑推理能力。', },
+      {
+        title: '分阶段训练方法', description: '模型经过三阶段训练过程：首先是 2K 上下文训练，然后扩展到 4K，最后是能力增强阶段，该阶段整合了来自评估基准的高质量数据。', },
+    ]}
+  />
+
+  <Steps
+    tagline="从助手到推理者" title="通向高级推理的严谨之路" items={[
+      {
+        title: '第一步：有监督微调 (SFT)', description: '基础模型首先使用 Tülu 3 开放框架，在多样化的数据混合上进行微调，以创建 Moxin-Instruct，一个有益无害的 AI 助手。', icon: 'tabler:school',
+      },
+      {
+        title: '第二步：直接偏好优化 (DPO)', description: 'SFT 模型在偏好数据集上进一步通过 DPO 进行训练，使其更贴近用户意图和偏好的响应风格。', icon: 'tabler:user-check',
+      },
+      {
+        title: '第三步：强化学习 (GRPO)', description: '为了创建 Moxin-Reasoning，我们应用了组相对策略优化 (GRPO)，这是一种受 DeepSeek 启发的纯强化学习方法，旨在大幅增强链式思维 (Chain-of-Thought) 能力。', icon: 'tabler:flame',
+      },
+      {
+        title: '结果：7B 模型实现 SOTA 推理能力', description: 'Moxin-Reasoning 的出色表现证明，先进的强化学习技术对于较小的 7B 模型也极为有效，实现了以前只在更大模型中才能看到的成果。', icon: 'tabler:award',
+      },
+    ]}
+  />
+
+</Layout>

@@ -1,0 +1,36 @@
+---
+import Features2 from '~/components/widgets/Features2.astro';
+import Features3 from '~/components/widgets/Features3.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import Stats from '~/components/widgets/Stats.astro';
+import Steps2 from '~/components/widgets/Steps2.astro';
+import Layout from '~/layouts/CNPageLayout.astro';
+import heroImage from '~/assets/images/hero-image-team.png';
+
+const metadata = {
+  // Translated title: "关于我们" is standard for "About us"
+  title: '关于我们',
+};
+---
+
+<Layout metadata={metadata}>
+  {/* The 'class' prop on <Hero> sets up a 2-column grid layout for larger screens and makes it screen-height. */}
+  <Hero
+    tagline="关于我们"
+    class="min-h-screen grid lg:grid-cols-2 items-center"
+    image={{
+      src: heroImage,
+      alt: 'Moxin LLM 团队成员在办公桌前工作的插图', // Translated alt text for the image
+      // The 'class' prop on the image ensures it fills its grid container.
+      class: 'h-full w-full object-cover',
+    }}
+  >
+    <Fragment slot="title">
+      <span class="text-accent dark:text-white">Moxin LLM</span> 团队
+    </Fragment>
+
+    <Fragment slot="subtitle">
+      Moxin LLM 由来自东北大学、哈佛大学、康奈尔大学、杜兰大学的研究人员及其合作伙伴共同创立，致力于推动真正开源的AI。<br /><br />我们严格遵守模型开放性框架（MOF），确保我们的模型、代码和数据完全透明，以应对行业中的“假开放”现象。<br /><br />我们的目标是赋能研究社区，并构建一个更加开放和普惠的AI生态系统。
+    </Fragment>
+  </Hero>
+</Layout>

@@ -1,0 +1,106 @@
+---
+import Layout from '~/layouts/CNPageLayout.astro';
+import Content from '~/components/widgets/Content.astro';
+import Steps from '~/components/widgets/Steps.astro';
+import heroImage from '~/assets/images/hero-image-4.png';
+
+const metadata = {
+  // Translated title: "使用与文档" for "Usage & Docs"
+  title: '使用与文档',
+  // Translated description
+  description: '了解如何使用、部署和微调 Moxin-LLM 模型，查阅我们的官方文档和指南。',
+};
+---
+
+<Layout metadata={metadata}>
+  <section class="px-4 py-16 sm:py-20">
+    <div class="mx-auto max-w-6xl">
+      <div class="flex flex-col md:flex-row items-center gap-8">
+        <div class="md:w-1/2">
+          <img
+            class="rounded-md w-full"
+            src={heroImage.src}
+            alt="Moxin AI 主页图片" width={700}
+            height={500}
+          />
+        </div>
+        <div class="md:w-1/2 text-center md:text-left">
+          <h1 class="text-4xl font-bold tracking-tight sm:text-5xl">
+            使用与文档 </h1>
+          <p class="mt-4 text-xl text-muted">
+            开始使用 Moxin-LLM。查找推理运行、部署优化以及为您的应用程序微调模型的指南。 </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Content
+    tagline="快速入门" title="几分钟内运行 Moxin-LLM" isCentered
+  >
+    <Fragment slot="content">
+      <p class="text-lg">使用 Hugging Face `transformers` 库快速启动并运行。此示例使用 `Moxin-7B-Instruct` 模型。</p> <div class="mt-6 mx-auto max-w-3xl rounded-md bg-slate-100 dark:bg-slate-800 p-4 text-left text-sm">
+        {/* The is:raw directive tells Astro to render the content as-is, without processing it. This fixes the error. */}
+        <pre is:raw class="overflow-x-auto">
+<code class="language-python">
+from transformers import AutoTokenizer, AutoModelForCausalLM
+
+model_id = "moxin-org/moxin-instruct-7b"
+
+tokenizer = AutoTokenizer.from_pretrained(model_id)
+model = AutoModelForCausalLM.from_pretrained(model_id)
+
+# Format the prompt for instruction-following
+prompt = "Can you explain the concept of regularization in machine learning?"
+formatted_prompt = f"&lt;|user|&gt;\n{prompt}&lt;|end|&gt;\n&lt;|assistant|&gt;"
+
+inputs = tokenizer(formatted_prompt, return_tensors="pt")
+outputs = model.generate(**inputs, max_new_tokens=200)
+
+print(tokenizer.decode(outputs[0], skip_special_tokens=True))
+</code>
+</pre>
+      </div>
+    </Fragment>
+  </Content>
+
+  <Content
+    tagline="模型指南" title="为获得最佳结果进行提示" items={[
+      {
+        title: '使用 Moxin-7B-Instruct', description:
+          '指令模型经过微调，适用于对话和遵循命令。为获得最佳结果，请将您的提示组织为对话形式。上方示例展示了标准格式。', },
+      {
+        title: '使用 Moxin-7B-Reasoning', description:
+          '该模型擅长处理数学和逻辑等链式思维 (CoT) 任务。它通过组相对策略优化 (GRPO) 得到增强。要充分发挥其潜力，请要求它“逐步思考”或“展示其工作”。', },
+    ]}
+  />
+
+  <Content
+    isReversed
+    tagline="部署与优化" title="边缘设备上的高性能表现" items={[
+      {
+        title: '针对设备端AI优化', description: 'Moxin-LLM 专为在个人电脑和手机等边缘设备上高效运行而设计。这一重点解决了隐私和低延迟应用的需求。', },
+      {
+        title: 'OminiX 引擎', description: '为获得最佳性能，我们建议使用自主研发的 OminiX 推理和微调引擎。该引擎针对包括国产 NPU 在内的各种边缘硬件进行了优化。', },
+      {
+        title: '经验证的效率', description: '我们的优化技术强大到足以在单台笔记本电脑上部署一个 235B 参数模型，并实现每秒约 14 个 token 的速度。', },
+    ]}
+  />
+
+  <Steps
+    title="微调 Moxin-LLM" subtitle="利用 Moxin 的完全开放性来创建您自己的专业模型。我们训练数据和脚本的透明性使微调过程更高效、更有效。" items={[
+      {
+        title: '第一步：从 Moxin-7B-Base 开始', description: '`Moxin-7B-Base` 模型是任何自定义微调项目的理想起点。', icon: 'tabler:box',
+      },
+      {
+        title: '第二步：准备您的自定义数据集', description: '收集并格式化您的数据，以用于特定任务，例如机器人指令、专业翻译术语或任何其他领域特定知识。', icon: 'tabler:database-export',
+      },
+      {
+        title: '第三步：运行微调过程', description: '使用标准开源训练脚本在您的数据集上微调模型。我们的开放方法确保您拥有完全的控制和可见性。', icon: 'tabler:flame',
+      },
+      {
+        title: '第四步：部署您的自定义模型', description: '训练完成后，您的专业模型即可部署，为您的特定应用程序带来强大、定制化的AI。', icon: 'tabler:rocket',
+      },
+    ]}
+  />
+
+</Layout>

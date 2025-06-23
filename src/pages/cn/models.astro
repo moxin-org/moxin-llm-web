@@ -1,0 +1,96 @@
+---
+import Layout from '~/layouts/CNPageLayout.astro';
+import Features from '~/components/widgets/Features.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+import heroImage from '~/assets/images/hero-image-2.png';
+
+const metadata = {
+  // Translated title: "模型中心" is common for "Model Hub"
+  title: '模型中心',
+  // Translated description: "探索 Moxin AI 模型家族，包括我们的基础版、指令版、推理版以及视觉语言模型 (VLM)。"
+  description: '探索 Moxin AI 模型家族，包括我们的基础版、指令版、推理版以及视觉语言模型 (VLM)。',
+};
+---
+
+<Layout metadata={metadata}>
+  <section class="px-4 py-16 sm:py-20">
+    <div class="mx-auto max-w-6xl">
+      <div class="flex flex-col md:flex-row items-center gap-8">
+        <div class="md:w-1/2">
+          <img
+            class="rounded-md w-full"
+            src={heroImage.src}
+            alt="Moxin AI 主页图片" width={700}
+            height={500}
+          />
+        </div>
+        <div class="md:w-1/2 text-center md:text-left">
+          <h1 class="text-4xl font-bold tracking-tight sm:text-5xl">
+            模型中心 </h1>
+          <p class="mt-4 text-xl text-muted">
+            探索我们的开源模型家族，每个模型都针对特定任务进行了优化，从通用用途到高级推理和多模态理解。 </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Features
+    isGrid
+    columns={2}
+    items={[
+      {
+        title: 'Moxin-7B-Base',
+        description: `这是我们的基础预训练模型，是希望创建高度定制化、精调模型的科研人员和开发者的理想选择。它基于增强型 Mistral 架构，使用超过2万亿个来自精选开放数据集的 token 进行训练。
+        <div class="mt-4">
+          <a class="btn btn-sm" href="https://huggingface.co/moxin-org/moxin-llm-7b" target="_blank">HF 卡片</a> <a class="btn btn-sm ml-2" href="https://github.com/moxin-org/Moxin-LLM" target="_blank">GitHub</a>
+        </div>`,
+        icon: 'tabler:box',
+      },
+      {
+        title: 'Moxin-7B-Instruct',
+        description: `一款经过微调、遵循指令且无害的AI助手，适用于指令遵循和对话任务。该模型是使用 Tülu 3 开放框架，通过对基础模型进行有监督微调 (SFT) 和直接偏好优化 (DPO) 创建的。
+        <div class="mt-4">
+          <a class="btn btn-sm" href="https://huggingface.co/moxin-org/moxin-instruct-7b" target="_blank">HF 卡片</a>
+          <a class="btn btn-sm ml-2" href="https://github.com/moxin-org/Moxin-LLM" target="_blank">GitHub</a>
+        </div>`,
+        icon: 'tabler:message-chatbot',
+      },
+      {
+        title: 'Moxin-7B-Reasoning',
+        description: `一款专为数学、逻辑和编码等复杂任务设计，具备高级推理能力的专家模型。它通过组相对策略优化 (GRPO) 得到增强，证明了强化学习即使对于 7B 规模的模型也极为有效。
+        <div class="mt-4">
+          <a class="btn btn-sm" href="https://huggingface.co/moxin-org/moxin-reasoning-7b" target="_blank">HF 卡片</a>
+          <a class="btn btn-sm ml-2" href="https://github.com/moxin-org/Moxin-LLM" target="_blank">GitHub</a>
+        </div>`,
+        icon: 'tabler:math-symbols',
+      },
+      {
+        title: 'Moxin-7B-VLM',
+        description: `一款强大的视觉语言模型 (VLM)，用于复杂的多模态理解。它使用 Moxin-7B-Base 作为其 LLM 骨干，并结合了 DINOv2 和 SigLIP 视觉编码器。这款 VLM 在关键基准测试中优于其他具有相似骨干的模型。
+        <div class="mt-4">
+          <a class="btn btn-sm" href="https://huggingface.co/moxin-org/moxin-vlm-7b" target="_blank">HF 卡片</a>
+          <a class="btn btn-sm ml-2" href="https://github.com/moxin-org/Moxin-VLM" target="_blank">GitHub</a>
+        </div>`,
+        icon: 'tabler:photo',
+      },
+    ]}
+  />
+
+  <CallToAction
+    title="准备好构建了吗？" subtitle="所有 Moxin AI 模型、代码和数据均可在 Hugging Face 和 GitHub 上获取。立即开始您的实验和创新吧！" actions={[
+      {
+        variant: 'primary',
+        text: '在 Hugging Face 上查看', href: 'https://huggingface.co/moxin-org',
+        target: '_blank',
+        icon: 'tabler:cloud-download',
+      },
+      {
+        variant: 'secondary',
+        text: '在 GitHub 上查看', href: 'https://github.com/moxin-org/Moxin-LLM',
+        target: '_blank',
+        icon: 'tabler:brand-github',
+      }
+    ]}
+  />
+
+</Layout>

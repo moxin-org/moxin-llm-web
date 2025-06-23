@@ -1,0 +1,68 @@
+---
+import Layout from '~/layouts/CNPageLayout.astro';
+import heroImage from '~/assets/images/hero-image-5.png';
+import Content from '~/components/widgets/Content.astro';
+import MoYoYoLogo from '/src/assets/images/MoYoYo-logo-shape.png';
+
+
+const metadata = {
+  // Translated title: "应用案例" is standard for "Use Case"
+  title: '应用案例',
+};
+---
+
+<Layout metadata={metadata}>
+
+  <section class="px-4 py-16 sm:py-20">
+    <div class="mx-auto max-w-6xl">
+      <div class="flex flex-col md:flex-row items-center gap-8">
+        <div class="md:w-1/2">
+          <img
+            class="rounded-md w-full"
+            src={heroImage.src}
+            alt="Moxin AI 主页图片" width={700}
+            height={500}
+          />
+        </div>
+        <div class="md:w-1/2 text-center md:text-left">
+          <h1 class="text-4xl font-bold tracking-tight sm:text-5xl">
+            应用案例 </h1>
+          <p class="mt-4 text-xl text-muted">
+            Moxin AI 及其团队的项目。 </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Content
+    items={[
+      {
+        title: 'YoYo 翻译官', description:
+          '实时离线语音翻译，实现精准的跨语言专业交流。', },
+      {
+        title: 'AI PC 上的 Deepseek 全尺寸模型部署', description:
+          '在 AMD Ryzen AI Max+ 395 迷你 PC 上部署 Qwen3-253B 模型，与 AMD 和 GMK 合作实现了 14 token/秒的推理速度。', },
+      {
+        title: '本地 AI：聊天、智能体、数字人', description:
+          '结合语音识别、理解和语音合成 (TTS) 的离线语音聊天、智能体和数字人解决方案，已应用于狼人杀语音游戏等场景。', },
+      {
+        title: '具身智能 AI', description:
+          '使机器人能够感知、理解现实世界并与之互动，完成抓取和运输等任务，适用于服务、教育和制造业。', },
+    ]}
+    image={{
+      src: MoYoYoLogo,
+      alt: 'MoYoYo 蓝色标志', }}
+  >
+    <Fragment slot="content">
+      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">MoYoYo</h3> MoYoYo 提供高效的多模态生成式 AI 训练和部署服务，包括 YoYo 翻译官和在 AI PC 上加速 Deepseek 部署。<br><br>MoYoYo 团队为 Moxin AI 做出贡献。 <div class="mt-4"> <a href="https://www.moyoyo.ai/" target="_blank" rel="noopener" class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700">
+          访问 MoYoYo AI
+        </a>
+      </div>
+    </Fragment>
+
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+    </Fragment>
+  </Content>
+
+</Layout>
