@@ -234,7 +234,7 @@ export const getStaticPathsBlogPost = async () => {
     },
     {
       params: { blog: ['cn', ...post.permalink.split('/')] },
-      props: { post },
+    props: { post },
     }
   ]));
 };
