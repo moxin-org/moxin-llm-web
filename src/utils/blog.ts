@@ -40,7 +40,7 @@ const generatePermalink = async ({
     .join('/');
 };
 
-const getNormalizedPost = async (post: CollectionEntry<'post'>): Promise<Post> => {
+const getNormalizedPost = async (post: CollectionEntry<'post'> | CollectionEntry<'translations'>): Promise<Post> => {
   const { id, data } = post;
   const { Content, remarkPluginFrontmatter } = await render(post);
 
@@ -57,7 +57,15 @@ const getNormalizedPost = async (post: CollectionEntry<'post'>): Promise<Post> =
     metadata = {},
   } = data;
 
-  const slug = cleanSlug(id); // cleanSlug(rawSlug.split('/').pop());
+  // If this is a translation, use the parent folder as the slug
+  let slug = cleanSlug(id);
+  if (id.startsWith('putting-open-to-the-test/')) {
+    slug = 'putting-open-to-the-test';
+  } else if (id.includes('/')) {
+    // For any translation, use the parent folder as slug
+    slug = id.split('/')[0];
+  }
+
   const publishDate = new Date(rawPublishDate);
   const updateDate = rawUpdateDate ? new Date(rawUpdateDate) : undefined;
 
@@ -111,7 +119,26 @@ const load = async function (): Promise<Array<Post>> {
   return results;
 };
 
-let _posts: Array<Post>;
+// New function to load posts with translations
+const loadWithTranslations = async function (locale: string = 'en'): Promise<Array<Post>> {
+  try {
+    // Try to load from translations directory first
+    const translationsCollection = await getCollection('translations');
+    const normalizedPosts = translationsCollection.map(async (post) => await getNormalizedPost(post));
+
+    const results = (await Promise.all(normalizedPosts))
+      .sort((a, b) => b.publishDate.valueOf() - a.publishDate.valueOf())
+      .filter((post) => !post.draft);
+
+    return results;
+  } catch (error) {
+    // Fallback to original data/post directory
+    console.warn('Translations collection not found, falling back to data/post:', error);
+    return await load();
+  }
+};
+
+let _postsByLocale: { [locale: string]: Array<Post> } = {};
 
 /** */
 export const isBlogEnabled = APP_BLOG.isEnabled;
@@ -129,12 +156,22 @@ export const blogTagRobots = APP_BLOG.tag.robots;
 export const blogPostsPerPage = APP_BLOG?.postsPerPage;
 
 /** */
-export const fetchPosts = async (): Promise<Array<Post>> => {
-  if (!_posts) {
-    _posts = await load();
+export const fetchPosts = async (locale?: string): Promise<Array<Post>> => {
+  const lang = locale || 'en';
+  if (!_postsByLocale[lang]) {
+    try {
+      const translationsCollection = await getCollection('translations');
+      const normalizedPosts = translationsCollection
+        .filter((post) => post.id.endsWith(`/${lang}`) || post.id.endsWith(`/${lang}.md`))
+        .map(async (post) => await getNormalizedPost(post));
+      _postsByLocale[lang] = (await Promise.all(normalizedPosts))
+        .sort((a, b) => b.publishDate.valueOf() - a.publishDate.valueOf())
+        .filter((post) => !post.draft);
+    } catch (error) {
+      _postsByLocale[lang] = [];
+    }
   }
-
-  return _posts;
+  return _postsByLocale[lang];
 };
 
 /** */
@@ -174,23 +211,32 @@ export const findLatestPosts = async ({ count }: { count?: number }): Promise<Ar
 };
 
 /** */
-export const getStaticPathsBlogList = async ({ paginate }: { paginate: PaginateFunction }) => {
+export const getStaticPathsBlogList = async ({ paginate, locale }: { paginate: PaginateFunction; locale?: string }) => {
   if (!isBlogEnabled || !isBlogListRouteEnabled) return [];
-  return paginate(await fetchPosts(), {
+  return paginate(await fetchPosts(locale), {
     params: { blog: BLOG_BASE || undefined },
     pageSize: blogPostsPerPage,
+    props: (result) => ({
+      posts: result.data,
+      page: result,
+    }),
   });
 };
 
 /** */
 export const getStaticPathsBlogPost = async () => {
   if (!isBlogEnabled || !isBlogPostRouteEnabled) return [];
-  return (await fetchPosts()).flatMap((post) => ({
-    params: {
-      blog: post.permalink,
+  const posts = await fetchPosts();
+  return posts.flatMap((post) => ([
+    {
+      params: { blog: ['en', ...post.permalink.split('/')] },
+      props: { post },
     },
-    props: { post },
-  }));
+    {
+      params: { blog: ['cn', ...post.permalink.split('/')] },
+      props: { post },
+    }
+  ]));
 };
 
 /** */

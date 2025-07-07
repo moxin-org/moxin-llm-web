@@ -4,6 +4,12 @@
     "post": {
       "type": "object",
       "properties": {
+        "title": {
+          "type": "string"
+        },
+        "excerpt": {
+          "type": "string"
+        },
         "publishDate": {
           "anyOf": [
             {
@@ -36,15 +42,6 @@
             }
           ]
         },
-        "draft": {
-          "type": "boolean"
-        },
-        "title": {
-          "type": "string"
-        },
-        "excerpt": {
-          "type": "string"
-        },
         "image": {
           "type": "string"
         },
@@ -55,92 +52,21 @@
           "type": "array",
           "items": {
             "type": "string"
-          }
+          },
+          "default": []
         },
         "author": {
           "type": "string"
         },
+        "draft": {
+          "type": "boolean",
+          "default": false
+        },
         "metadata": {
           "type": "object",
           "properties": {
-            "title": {
-              "type": "string"
-            },
-            "ignoreTitleTemplate": {
-              "type": "boolean"
-            },
             "canonical": {
-              "type": "string",
-              "format": "uri"
-            },
-            "robots": {
-              "type": "object",
-              "properties": {
-                "index": {
-                  "type": "boolean"
-                },
-                "follow": {
-                  "type": "boolean"
-                }
-              },
-              "additionalProperties": false
-            },
-            "description": {
               "type": "string"
-            },
-            "openGraph": {
-              "type": "object",
-              "properties": {
-                "url": {
-                  "type": "string"
-                },
-                "siteName": {
-                  "type": "string"
-                },
-                "images": {
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "url": {
-                        "type": "string"
-                      },
-                      "width": {
-                        "type": "number"
-                      },
-                      "height": {
-                        "type": "number"
-                      }
-                    },
-                    "required": [
-                      "url"
-                    ],
-                    "additionalProperties": false
-                  }
-                },
-                "locale": {
-                  "type": "string"
-                },
-                "type": {
-                  "type": "string"
-                }
-              },
-              "additionalProperties": false
-            },
-            "twitter": {
-              "type": "object",
-              "properties": {
-                "handle": {
-                  "type": "string"
-                },
-                "site": {
-                  "type": "string"
-                },
-                "cardType": {
-                  "type": "string"
-                }
-              },
-              "additionalProperties": false
             }
           },
           "additionalProperties": false
@@ -150,7 +76,9 @@
         }
       },
       "required": [
-        "title"
+        "title",
+        "excerpt",
+        "publishDate"
       ],
       "additionalProperties": false
     }

@@ -11,9 +11,9 @@ import { blogListRobots, getStaticPathsBlogList } from '~/utils/blog';
 
 export const prerender = true;
 
-export const getStaticPaths = (async ({ paginate }) => {
-  return await getStaticPathsBlogList({ paginate });
-}) satisfies GetStaticPaths;
+export const getStaticPaths = async ({ paginate }) => {
+  return await getStaticPathsBlogList({ paginate, locale: 'cn' });
+};
 
 type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 
@@ -41,7 +41,7 @@ const metadata = {
     >
       博客
     </Headline>
-    <BlogList posts={page.data} />
+    <BlogList posts={page.data} locale="cn" />
     <Pagination prevUrl={page.url.prev} nextUrl={page.url.next} />
     <!--
       <PostTags tags={allCategories} class="mb-2" title="Search by Categories:" isCategory />
